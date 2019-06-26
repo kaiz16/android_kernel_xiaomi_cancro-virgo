@@ -442,7 +442,7 @@
 
 #define	MAX_VIBE_STRENGTH		0x7f
 #define	MIN_VIBE_STRENGTH		0x0C
-#define	DEF_VIBE_STRENGTH		MAX_VIBE_STRENGTH
+#define	DEF_VIBE_STRENGTH		0x3f
 
 static int g_nDeviceID = -1;
 static struct i2c_client *g_pTheClient;
