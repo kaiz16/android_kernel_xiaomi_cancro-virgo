@@ -2,7 +2,7 @@
 CODENAME=cancro
 DEFCONFIG=virgo_defconfig
 OBJ_DIR=`pwd`/.obj
-TOOLCHAIN=${HOME}/toolchains/arm-linux-androideabi-4.9/bin/arm-linux-androidkernel-
+TOOLCHAIN=${HOME}/toolchains/arm-eabi-5.x/bin/arm-eabi-
 DATE=$(date +"%d-%b-%Y")
 
 if [ ! -d ${OBJ_DIR} ]; then
@@ -13,9 +13,8 @@ else
     mkdir ${OBJ_DIR}
 fi
 
-
 make ARCH=arm O=$OBJ_DIR CROSS_COMPILE=${TOOLCHAIN} $DEFCONFIG
-make -j$(grep -c ^processor /proc/cpuinfo) ARCH=arm O=$OBJ_DIR CROSS_COMPILE=${TOOLCHAIN}
+make CONFIG_NO_ERROR_ON_MISMATCH=y -j$(grep -c ^processor /proc/cpuinfo) ARCH=arm O=$OBJ_DIR CROSS_COMPILE=${TOOLCHAIN}
 
 if [ ! -f ${OBJ_DIR}/arch/arm/boot/zImage-dtb ]; then
     echo "	Build failed. Check your errors."
